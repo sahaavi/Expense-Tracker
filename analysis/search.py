@@ -6,8 +6,10 @@ class Search(object):
         self.statement = df
 
     def search_category(self, cname):
-        return pd.head(self.df)
+        print(self.statement.head())
+        return self.statement.head()
 
 
-statement = pd.read_csv("statement.csv")
+statement = pd.read_csv("analysis/statement.csv")
 p = Search(statement)
+p.search_category("sd")
