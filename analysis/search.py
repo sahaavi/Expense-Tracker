@@ -1,4 +1,4 @@
-from timerange import TimeRange as tr
+import analysis.timerange as tr
 
 class Search(object):
 
@@ -9,8 +9,8 @@ class Search(object):
         matched_cat = self.statement.loc[self.statement['category'] == cname]
         return matched_cat
 
-    def search_cateegory(self, cname, start_date, end_date):
-        filtered_statement = tr.getrange(slef.statement, start_date, end_date)
+    def search_category(self, cname, start_date, end_date):
+        filtered_statement = tr.getrange(self.statement, start_date, end_date)
         matched_cat = filtered_statement.loc[filtered_statement["category"] == cname]
         return matched_cat
 
