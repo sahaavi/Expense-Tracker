@@ -24,3 +24,10 @@ class Analysis(Search):
         category_percentage = filtered_statement.groupby(["category"], dropna=False).sum()
         category_percentage["percentage"] = 100 * (category_percentage['amount']/self.total_expense(category_percentage))
         return category_percentage
+
+    def category_average(self):
+        filtered_statement = Search.search_range(self, self.start_date, self.end_date)
+        category_average = filtered_statement.groupby(["category"], dropna=False).sum()
+        category_average['average'] = filtered_statement.groupby('category', dropna=False).mean()
+        print(category_average['amount'][:])
+        return category_average
