@@ -28,28 +28,59 @@ def categorize_all(df, catlist, dict_cat_shop):
     #print(dict_cat_shop)
 
 def categorize_item(df, catlist, dict_cat_shop):
-    name_or_row = input('Would you like to categorize a specific transaction name or a specific row (t/r): ')
-    if name_or_row == 't':
-        in_shop_name = input('What transaction name would you like to categorize? ')
-        if df['shop_name'].str.contains(in_shop_name).any():
-            print('We have a match')
+    try:
+        name_or_row = input('Would you like to categorize a specific transaction name or a specific row (t/r): ')
+        if name_or_row == 't':
+            # update the category in the dataframe
+            # update dict_cat_shop shop_name : new category
+            user_shop_name = input('What transaction name would you like to categorize? ').upper()
+            if df['shop_name'].str.contains(user_shop_name).any():
+                print('We have a match')
+                df_contains = df[df['shop_name'].str.contains(user_shop_name)]
+                print(df_contains)
+                confirm = input("Confirm selection for categorizing (y/n): ")
+                if confirm == 'y':
+                    print(catlist)
+                    i = int(input("Enter the category: ", ))
+                    print(f'Updating the category to {catlist.get(i)}')
+                    for index, row in df_contains.iterrows():
+                        df.loc[index, 'category'] = catlist.get(i) # index is same as main dataframe
+                        dict_cat_shop[df.loc[index, 'shop_name']] = catlist.get(i) # in case that str.contains shows items with diff names
+                else:
+                    print("Categorizing cancelled")
+            else:
+                print('No match')
+        elif name_or_row == 'r':
+            # update the category in the dataframe
+            # does not update the dictionary shop_name
+            user_show = input("Would you like to see the dataframe (y/n): ")
+            if user_show == 'y':
+                print(df)
+            user_row = int(input("Which row would you like to categorize (input number): "))
+            print(df.loc[[user_row]])
+            confirm = input("Confirm selection for categorizing (y/n): ")
+            if confirm == 'y':
+                print(catlist)
+                i = int(input("Enter the category: ", ))
+                print(f'Updating the category of line {user_row} to {catlist.get(i)}')
+                df.loc[user_row, 'category'] = catlist.get(i)
+            else:
+                print("Categorizing cancelled")
         else:
-            print('No match')
-    elif name_or_row == 'r':
-        print(name_or_row)
-    else:
-        print('Please input t or r. Edit cancelled.')
-    # for a specific shop item name, change its category: in key(shop_name):value(category), easy enough
-    # or for a specific row: change in dataframe only
-    # if name / row is equal to user input, then change to category input
-    print("categorize item")
+            print('Please input t (transaction name) or r (row number). Edit cancelled.')
+    except Exception as e:
+                print(e)
 
 def update_category(self):
 
     # if category was 'grocery', update to 'groceries' ; actually changing the dictionary ?
+    # change in dictionary
+    # update in dataframe
     print("update category")
 
 def delete_category(self): 
+    # delete from dictionary
+    # update in dataframe: [if not in dictionary then set null somewhere earlier]
     # if categroy was 'grocery', make column cell null
     print("delete category")
 
