@@ -1,8 +1,5 @@
 import pandas as pd
-import numpy as np
 from datetime import datetime
-
-#catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
 
 class Expenses():
     colnames = ["date", "shop_name", "amount", "category"]
@@ -14,45 +11,41 @@ class Expenses():
 
     def add_expenses(self, catlist):
         try:
-            #user_date = input("Enter the date (MM/DD/YYYY): ")
-            user_date = "12/01/2022"
+            user_date = input("Enter the date (MM/DD/YYYY): ")
+            ## user_date = "12/01/2022"
             date_format = "%m/%d/%Y"
             user_date = datetime.strptime(user_date, date_format)
-            #user_shopname = input("Enter the transaction name: ").upper()
-            user_shopname = "rent".upper()
-            #user_amount = float(input("Enter the amount: "))
-            user_amount = 700
-            ## print current list of categories so user can choose from
-            #print(catlist)
-            #user_category = catlist.get(int(input("Enter a category: ")))
-            user_category = catlist.get(5)
+            user_shopname = input("Enter the transaction name: ").upper()
+            ## user_shopname = "rent".upper()
+            user_amount = float(input("Enter the amount: "))
+            ## user_amount = 700
+            print(catlist)
+            user_category = catlist.get(int(input("Enter a category: ")))
+            ## user_category = catlist.get(5)
             print(f'Confirm input (y/n): Date: {user_date}, Transaction name: {user_shopname}, Amount: {user_amount}, Category: {user_category}')
             newrow = [user_date, user_shopname, user_amount, user_category]
-            #confirm = input("Confirm input (y/n): ")
-            confirm = "y"
+            confirm = input("Confirm input (y/n): ")
+            ## confirm = "y"
             if confirm == "y":
                 self.maindf.loc[len(self.maindf)] = newrow
                 #print(self.maindf)
             else:
                 print("input cancelled")
         except ValueError:
-            print("input called; Please input a numeric value for amount")
+            print("input cancelled; Please input a numeric value for amount")
         except Exception as e:
             print(e)
         
-
     def add_csv(self):
         try: 
-            #filename = input("Enter csv file name to add: ")
-            #print("File to add is: " + filename)
-            userdf = pd.read_csv("accountactivity.csv", header=None, usecols=[0, 1, 2])
-            ###### change back from actual name to filename
+            filename = input("Enter csv file name to add: ")
+            print("File to add is: " + filename)
+            userdf = pd.read_csv(filename, header=None, usecols=[0, 1, 2])
             userdf['category'] = ''
             userdf.columns = self.colnames
             userdf = userdf.dropna()
             userdf["date"] = pd.to_datetime(userdf["date"])
             self.maindf = self.maindf.append(userdf)
-            #print(self.maindf)
         except Exception as e:
             print(e) 
 
@@ -61,7 +54,6 @@ class Expenses():
             end = len(self.maindf)
         if len(self.maindf) != 0:
             return self.maindf.loc[start:end]
-            #print(self.maindf.info())
         else:
             print("No data yet")
 
@@ -82,6 +74,8 @@ class Expenses():
         except Exception as e:
             print(e)
     
+    
+    #I don't know if we need these following functions or nah
     def __str__(self):
         return str(self.maindf)
     
@@ -89,8 +83,6 @@ class Expenses():
         return iter(self.maindf)
         #return iter(self.maindf.T)
     
-    #def __getitem__(self, idx):
-        #return self.maindf[idx]
 
     
 
