@@ -18,8 +18,8 @@ class Expenses():
             user_date = "12/01/2022"
             date_format = "%m/%d/%Y"
             user_date = datetime.strptime(user_date, date_format)
-            #user_shopname = input("Enter the transaction name: ")
-            user_shopname = "rent"
+            #user_shopname = input("Enter the transaction name: ").upper()
+            user_shopname = "rent".upper()
             #user_amount = float(input("Enter the amount: "))
             user_amount = 700
             ## print current list of categories so user can choose from
