@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 
-class Expenses():
+class Expenses(object):
     colnames = ["date", "shop_name", "amount", "category"]
     newdf = pd.DataFrame(columns=colnames)
 
@@ -9,18 +9,18 @@ class Expenses():
         self.maindf = maindf
         self.colnames = colnames
 
-    def add_expenses(self, catlist):
+    def add_expenses(self, catlist, user_date, user_shopname, user_amount, user_category):
         try:
-            user_date = input("Enter the date (MM/DD/YYYY): ")
+            ### user_date = input("Enter the date (MM/DD/YYYY): ")
             ## user_date = "12/01/2022"
             date_format = "%m/%d/%Y"
             user_date = datetime.strptime(user_date, date_format)
-            user_shopname = input("Enter the transaction name: ").upper()
+            ### user_shopname = input("Enter the transaction name: ").upper()
             ## user_shopname = "rent".upper()
-            user_amount = float(input("Enter the amount: "))
+            ### user_amount = float(input("Enter the amount: "))
             ## user_amount = 700
             print(catlist)
-            user_category = catlist.get(int(input("Enter a category: ")))
+            ### user_category = catlist.get(int(input("Enter a category: ")))
             ## user_category = catlist.get(5)
             print(f'Confirm input (y/n): Date: {user_date}, Transaction name: {user_shopname}, Amount: {user_amount}, Category: {user_category}')
             newrow = [user_date, user_shopname, user_amount, user_category]
