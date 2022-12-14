@@ -3,7 +3,7 @@ import data.store_data as sd
 import data.categorize_data as cd
 import analysis.search as s
 import analysis.analysis as a
-
+#test for auto push
 
 def main():
     base_df = sd.Expenses()
