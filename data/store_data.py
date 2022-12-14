@@ -19,7 +19,7 @@ class Expenses(object):
             ## user_shopname = "rent".upper()
             ### user_amount = float(input("Enter the amount: "))
             ## user_amount = 700
-            print(catlist)
+            ## print(catlist)
             ### user_category = catlist.get(int(input("Enter a category: ")))
             ## user_category = catlist.get(5)
             print(f'Confirm input (y/n): Date: {user_date}, Transaction name: {user_shopname}, Amount: {user_amount}, Category: {user_category}')
@@ -31,14 +31,14 @@ class Expenses(object):
                 #print(self.maindf)
             else:
                 print("input cancelled")
-        except ValueError:
-            print("input cancelled; Please input a numeric value for amount")
+        #except ValueError:
+            #print("input cancelled; Please input a numeric value for amount")
         except Exception as e:
             print(e)
         
-    def add_csv(self):
+    def add_csv(self, filename):
         try: 
-            filename = input("Enter csv file name to add: ")
+            #filename = input("Enter csv file name to add: ")
             print("File to add is: " + filename)
             userdf = pd.read_csv(filename, header=None, usecols=[0, 1, 2])
             userdf['category'] = ''
@@ -54,18 +54,18 @@ class Expenses(object):
             end = len(self.maindf)
         if len(self.maindf) != 0:
             return self.maindf.loc[start:end]
-        else:
-            print("No data yet")
+        #else:
+            #print("No data yet")
 
-    def export_expenses(self):
-        filename = input("Name the exported file: ")
-        export_data = self.maindf.to_csv(filename)
+    def export_expenses(self, newfilename):
+        #filename = input("Name the exported file: ")
+        export_data = self.maindf.to_csv(newfilename)
         return None
 
-    def delete_expenses(self):
+    def delete_expenses(self, whichrow):
         self.show_expenses()
         try:
-            whichrow = int(input("Which row number you would like to delete: "))
+            #whichrow = int(input("Which row number you would like to delete: "))
             confirm = input(f'Confirm delete row {whichrow} (y/n): ')
             if confirm == "y":
                 self.maindf = self.maindf.drop(whichrow)
