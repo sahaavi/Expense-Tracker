@@ -20,6 +20,7 @@ def main():
         if input0 == "1":
             filename = input("Enter csv file name to add: ")
             base_df.add_csv(filename)
+            n += 1
         elif input0 == "2":
             user_date = input("Enter the date (MM/DD/YYYY): ")
             user_shopname = input("Enter the transaction name: ").upper()
@@ -27,9 +28,10 @@ def main():
             print(catlist)
             user_category = catlist.get(int(input("Enter a category: ")))
             base_df.add_expenses(catlist, user_date, user_shopname, user_amount, user_category)
+            n += 1
         else:
             print("Input a valid choice (1-2)")
-        n += 1
+        
         
     while True:
         print("1. Import/Export the data or add expenses.")
@@ -110,7 +112,8 @@ def main():
                     print("Input a valid choice (1-5)")
 
         elif user_input == "3":
-            p = s(df)
+            print(df)
+            p = s.Search(df)
             while True:
                 print("1. Search a specific day's transactions")
                 print("2. Search transactions from a range of days")
@@ -156,10 +159,10 @@ def main():
                 else:
                     print("Input a valid choice (0-8)")
 
-        """elif user_input == "4":
+        elif user_input == "4":
             start_date = input("Enter start date (dd/mm/yyyy): ")
             end_date = input("Enter end date (dd/mm/yyyy): ")
-            j = a(statement, start_date, end_date)
+            j = a(df, start_date, end_date)
             while True:
                 print("1. Total Expense")
                 print("2. Income Expense Ratio from a range of days")
@@ -168,7 +171,7 @@ def main():
                 print("0. Back to main")
                 user_input_s = input("Choose an option: ")
                 if user_input_s == "1":
-                    print(j.total_expense(statement))
+                    print(j.total_expense(df))
                 if user_input_s == "2":
                     income = float(input("Enter the income: "))
                     print(j.income_expense_ratio_range(income))
@@ -179,7 +182,7 @@ def main():
                 elif user_input_s == "0":
                     break
                 else:
-                    print("Input a valid choice (0-4)")"""
+                    print("Input a valid choice (0-4)")
 
         if user_input == "exit":
             break
