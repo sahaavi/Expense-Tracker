@@ -3,8 +3,8 @@
 # you need to provide the dataframe
 import pandas as pd # import to initialize dataframe
 
-from search import Search as s
-from analysis import Analysis as a
+from analysis.search import Search as s #from subpackage.module import class
+from analysis.analysis import Analysis as a
 
 # providing dataframe and formatting properly
 # this step is done in `data` subpackage
