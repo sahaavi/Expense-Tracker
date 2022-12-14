@@ -44,10 +44,10 @@ def main():
                     base_df.add_expenses()
 
                 elif input1 == "3":
-                    base_df.show_expenses()
+                    print(base_df.show_expenses())
 
                 elif input1 == "4":
-                    base_df.show_expenses()
+                    print(base_df.show_expenses())
                     whichrow = int(input("Which row number you would like to delete: "))
                     base_df.delete_expenses(whichrow)
                 
