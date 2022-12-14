@@ -66,7 +66,9 @@ def main():
                     base_df.add_expenses(catlist, user_date, user_shopname, user_amount, user_category)
 
                 elif input1 == "3":
-                    print(base_df.show_expenses())
+                    print(df)
+                    #return df
+                    #print(base_df.show_expenses())
 
                 elif input1 == "4":
                     print(base_df.show_expenses())
