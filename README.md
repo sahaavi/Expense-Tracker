@@ -17,3 +17,7 @@
 [stars-url]: https://github.com/sahaavi/Expense-Tracker-and-Analysis/stargazers
 [license-shield]: https://img.shields.io/github/license/sahaavi/Expense-Tracker-and-Analysis.svg?style=flat-square
 [license-url]: https://github.com/sahaavi/Expense-Tracker-and-Analysis/blob/master/LICENSE
+
+
+### changes
+- statement.csv file can't have header already; when downloaded from td bank they don't have headers. 
