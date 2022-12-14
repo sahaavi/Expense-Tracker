@@ -3,12 +3,34 @@ import data.store_data as sd
 import data.categorize_data as cd
 import analysis.search as s
 import analysis.analysis as a
+## maybe have a while loop with while n = 1
+# then the first step when running the file is automatically adding data
+# then after doing that it can go back and choose other options
 
 def main():
     base_df = sd.Expenses()
     catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
     dict_cat_shop = {}
-    
+    n = 1
+    input0 = None
+    while n == 1:
+        print("1: add csv file")
+        print("2: add individual expense")
+        input0 = input("Choose option: ")
+        if input0 == "1":
+            filename = input("Enter csv file name to add: ")
+            base_df.add_csv(filename)
+        elif input0 == "2":
+            user_date = input("Enter the date (MM/DD/YYYY): ")
+            user_shopname = input("Enter the transaction name: ").upper()
+            user_amount = float(input("Enter the amount: "))
+            print(catlist)
+            user_category = catlist.get(int(input("Enter a category: ")))
+            base_df.add_expenses(catlist, user_date, user_shopname, user_amount, user_category)
+        else:
+            print("Input a valid choice (1-2)")
+        n += 1
+        
     while True:
         print("1. Import/Export the data or add expenses.")
         print("2. Categorize the data")
