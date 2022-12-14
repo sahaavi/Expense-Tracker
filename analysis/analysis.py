@@ -29,5 +29,4 @@ class Analysis(Search):
         filtered_statement = Search.search_range(self, self.start_date, self.end_date)
         category_average = filtered_statement.groupby(["category"], dropna=False).sum()
         category_average['average'] = filtered_statement.groupby('category', dropna=False).mean()
-        print(category_average['amount'][:])
         return category_average
