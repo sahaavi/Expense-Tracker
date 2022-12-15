@@ -21,7 +21,7 @@
 
 # Package: ExpenseTrackerAndAnalysis 
 
-This package is best used via the run.py file as an application. It will help users who want to get some insights into their spending habits from their credit card statements. This package will help them add expenses, categorize them, and aggregate them in different ways. To see how to run individual packages, inspect the driver.py. There is a sample csv file available. 
+This package is best used via the run.py file as an application. It will help users who want to get some insights into their spending habits from their credit card statements. This package will help them add expenses, categorize them, and aggregate them in different ways. To see how to run individual subpackages, inspect the driver.py. There is a sample csv file available. 
 
 ## Sub-Package: data
 
