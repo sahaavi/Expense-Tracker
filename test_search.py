@@ -10,7 +10,7 @@ class TestSearch(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
-        print("Test class starts")
+        print("Search test starts")
         filename = "statement.csv"
         # creting a object
         cls.base_df = sd.Expenses()
@@ -18,7 +18,6 @@ class TestSearch(unittest.TestCase):
         cls.base_df.add_csv(filename)
         # show all expenses
         cls.df = cls.base_df.show_expenses()
-        cname = "grocery"
 
     # setting up for test
     def setUp(self):
@@ -33,7 +32,7 @@ class TestSearch(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        print("Test class finishes")
+        print("Search Test finishes")
 
     # test casae
     def test_search_date(self): 
