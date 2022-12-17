@@ -1,32 +1,23 @@
 import unittest
-import pandas as pd
-# module to check pandas dataframe
-from pandas.testing import assert_frame_equal
-
 import data.store_data as sd
-from data.store_data import Expenses as E
-from analysis.search import Search as s
 
 class TestStoreData(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
         print("Test class starts")
-        filename = "statement.csv"
-        # creating a object
-        cls.base_df = sd.Expenses()
-        # add the csv file
-        cls.base_df.add_csv(filename)
-        # show all expenses
-        cls.df = cls.base_df.show_expenses()
-        cname = "grocery"
+        cls.filename = "statement.csv"
+        cls.df_c = sd.add_csv(cls.filename)
+        cls.user_date = "12/01/2022"
+        cls.user_shopname = "rent"
+        cls.user_amount = 700
+        cls.user_category = 5
+        cls.df_e = sd.add_expenses(cls.user_date, cls.user_shopname, cls.user_amount, cls.user_category)
 
     # setting up for test
     def setUp(self):
         print("Test Setup")
-        self.p = s(self.df)
-        self.cdf = pd.DataFrame({'date': ['11/02/2022'], 'shop_name': ['SAVE ON FOODS #2229'], 'amount': [11.08], 'category': ""})
-        self.cdf['date'] = pd.to_datetime(self.cdf['date'])
+        
 
     # test end
     def tearDown(self):
@@ -37,21 +28,19 @@ class TestStoreData(unittest.TestCase):
         print("Test class finishes")
 
     # test case
-    def test_add_csv(self): 
+    def test_add_csv(self):
+        self.assertEqual(len(sd.add_csv(self.filename)), 7) # add csv to empty
+        self.assertEqual(len(sd.add_csv(self.filename, self.df_e)), 8) # add csv to dataframe from one add_expense
+        self.assertEqual(len(sd.add_csv(self.filename, self.df_c)), 14) # add csv to dataframe from add_csv
+        self.assertEqual(sd.add_csv(self.filename, "fake_df"), None) # try to add csv to not a dataframe
         
+    def test_add_expenses(self):
+        self.assertEqual(len(sd.add_expenses("03/12/2022", "rent", 700, 5, self.df_c)), 8)
+        self.assertEqual(len(sd.add_expenses("03/12/2022", "rent", 700, 5)), 1)
+        self.assertEqual(sd.add_expenses("99/12/2022", "rent", 700, 5), None)
+        self.assertEqual(sd.add_expenses("03/12/2022", "rent", "sevenhundred", 5), None)
 
-    # test case
-    def test_search_amount(self):
-        actual = self.p.search_amount(float("11.08"))
-        # reset the index of dataframe
-        actual = actual.reset_index(drop=True)
-        assert_frame_equal(actual, self.cdf, check_dtype=False)
-        # string passed instead of amount
-        self.assertEqual(self.p.search_amount("11.08"), None)
-        # amount not matched with statement records
-        self.assertEqual(self.p.search_amount(float("11.18")), None)
-        # integer passed instead of float
-        self.assertEqual(self.p.search_amount(11), None)
+        
 
 unittest.main(argv=[''], verbosity=2, exit=False)
 
