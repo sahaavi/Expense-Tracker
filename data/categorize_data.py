@@ -1,8 +1,13 @@
+import pandas as pd
 
-def categorize_all(df, catlist, dict_cat_shop):
+catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
+dict_cat_shop = {}
+
+
+def categorize_all(df, catlist = catlist, dict_cat_shop = dict_cat_shop):
     print(catlist)
     for index, row in df.iterrows():
-        if df.loc[index, 'category'] == '':
+        if len(df.loc[index, 'category']) == 0:
             if df.loc[index, 'shop_name'] in dict_cat_shop:
                 df.loc[index, 'category'] = dict_cat_shop.get(df.loc[index, 'shop_name'])
             else:
@@ -11,7 +16,7 @@ def categorize_all(df, catlist, dict_cat_shop):
                 df.loc[index, 'category'] = catlist.get(i)
                 dict_cat_shop[df.loc[index, 'shop_name']] = catlist.get(i)
 
-def categorize_item(df, catlist, dict_cat_shop):
+def categorize_item(df, catlist = catlist, dict_cat_shop = dict_cat_shop):
     try:
         name_or_row = input('Would you like to categorize a specific transaction name or a specific row (t/r): ')
         if name_or_row == 't':
@@ -55,7 +60,7 @@ def categorize_item(df, catlist, dict_cat_shop):
     except Exception as e:
                 print(e)
 
-def update_category(df, catlist, dict_cat_shop):
+def update_category(df, catlist = catlist, dict_cat_shop = dict_cat_shop):
     try:
         print(catlist)
         user_cat = int(input('Which category would you like to rename? (input number) '))
@@ -74,10 +79,10 @@ def update_category(df, catlist, dict_cat_shop):
     except Exception as e:
         print(e)
 
-def add_category(catlist):
-    print(catlist)
-    new_cat = input('Name of new category: ')
-    catlist[len(catlist)+1] = new_cat
+def add_category(newcat, catlist = catlist):
+    #print(catlist)
+    #new_cat = input('Name of new category: ')
+    catlist[len(catlist)+1] = newcat
 
 
 # i'm deciding we don't need to offer this function to users b/c i'm lazy (is that ok?) 
