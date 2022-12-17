@@ -2,7 +2,7 @@ import unittest
 import data.store_data as sd
 import data.categorize_data as cd
 
-class TestStoreData(unittest.TestCase):
+class TestCategorize(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
