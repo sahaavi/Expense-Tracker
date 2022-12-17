@@ -12,12 +12,8 @@ class TestAnalysis(unittest.TestCase):
     def setUpClass(cls):
         print("Analysis test starts")
         filename = "statement.csv"
-        # creting a object
-        cls.base_df = sd.Expenses()
-        # add the csv file
-        cls.base_df.add_csv(filename)
-        # show all expenses
-        cls.df = cls.base_df.show_expenses()
+        # adding the file
+        cls.df = sd.add_csv(filename)
 
     # setting up for test
     def setUp(self):
