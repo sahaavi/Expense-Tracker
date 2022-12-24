@@ -1,7 +1,14 @@
 from setuptools import setup, find_packages
+
+def readme():
+    with open('README.md') as f:
+        README = f.read()
+    return README
+
+    
 setup(
     name='expta',
-    version='0.1',
+    version='1.0.1',
     packages=find_packages(exclude=['tests*']),
     license='MIT',
     description='Track & Analyze your expenses based on TD Bank Statement',
