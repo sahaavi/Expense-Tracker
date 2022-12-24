@@ -1,7 +1,5 @@
-import sys
-
-import data.store_data as sd
-import data.categorize_data as cd
+from data import store_data as sd
+from data import categorize_data as cd
 from analysis.search import Search as s
 from analysis.analysis import Analysis as a
 
