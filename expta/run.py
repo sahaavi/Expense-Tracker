@@ -117,7 +117,7 @@ def main():
                     except Exception as e:
                         print(e)
 
-                elif input1 == "5":
+                elif input2 == "5":
                     print(base_df)
 
                 elif input2 == "0":
@@ -196,7 +196,7 @@ def main():
                     income = float(input("Enter the income: "))
                     print(j.income_expense_ratio_range(income))
                 elif user_input_s == "2":
-                    print(j.category_average())
+                    print(j.category_percentage())
                 elif user_input_s == "3":
                     print(j.category_average())
                 elif user_input_s == "0":
