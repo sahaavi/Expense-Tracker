@@ -6,9 +6,8 @@ from analysis.search import Search as s
 from analysis.analysis import Analysis as a
 
 def main():
-    ## base_df = sd.Expenses()
-    catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
-    dict_cat_shop = {}
+    #catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
+    #dict_cat_shop = {}
     n = 1
     input0 = None
     while n == 1:
@@ -18,16 +17,20 @@ def main():
         if input0 == "1":
             filename = input("Enter csv file name to add: ")
             base_df = sd.add_csv(filename)
+            if 'base_df' in locals():
+                n += 1
         elif input0 == "2":
             user_date = input("Enter the date (MM/DD/YYYY): ")
             user_shopname = input("Enter the transaction name: ").upper()
             user_amount = float(input("Enter the amount: "))
-            print(catlist)
-            user_category = catlist.get(int(input("Enter a category: ")))
-            base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, catlist)
+            print(cd.catlist)
+            user_category = cd.catlist.get(int(input("Enter a category: ")))
+            base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, cd.catlist)
+            if 'base_df' in locals():
+                n += 1
         else:
             print("Input a valid choice (1-2)")
-        n += 1
+        
 
     while True:
         print("1. Import/Export the data or add expenses.")
@@ -36,31 +39,30 @@ def main():
         print("4. Analysis")
         print("Type exit to exit")
 
-        
         user_input = input("Choose an option: ")
 
         if user_input == "1":
             input1 = None
-            while input1 != "6":
+            while input1 != "0":
                 print("1: add csv file")
                 print("2: add individual expense")
                 print("3: show expenses")
                 print("4: delete expense")
                 print("5: export expenses to csv")
-                print("6: exit")
+                print("0: back")
                 input1 = input("Choose an option: ")
 
                 if input1 == "1":
                     filename = input("Enter csv file name to add: ")
-                    sd.add_csv(filename, base_df)
+                    base_df = sd.add_csv(filename, base_df)
 
                 elif input1 == "2":
                     user_date = input("Enter the date (DD/MM/YYYY): ")
                     user_shopname = input("Enter the transaction name: ").upper()
                     user_amount = float(input("Enter the amount: "))
-                    print(catlist)
-                    user_category = catlist.get(int(input("Enter a category: ")))
-                    base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, catlist)
+                    print(cd.catlist)
+                    user_category = input("Enter a category: ")
+                    base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, cd.catlist)
 
                 elif input1 == "3":
                     print(base_df)
@@ -74,52 +76,55 @@ def main():
                     newfilename = input("Name the exported file: ")
                     sd.export_expenses(base_df, newfilename)
                 
-                elif input1 == "6":
+                elif input1 == "0":
                     break
 
                 else:
-                    print("Input a valid choice (1-6)")
+                    print("Input a valid choice (0-5)")
 
         if user_input == "2":
             
             input2 = None
-            while input2 != "5":
-                print("1: categorize all uncagetorized expenses")
+            while input2 != "0":
+                print("1: categorize all uncategorized expenses")
                 print("2: categorize specific expense")
                 print("3: update a category name")
                 print("4: add a category")
-                print("5: exit")
+                print("5: show expenses")
+                print("0: back")
                 input2 = input("Choose an option: ")
                 if input2 == "1":
-                    cd.categorize_all(base_df, catlist, dict_cat_shop)
+                    cd.categorize_all(base_df, cd.catlist, cd.dict_cat_shop)
                 
                 elif input2 == "2":
-                    user_shop_name = input('What transaction name would you like to categorize? ').upper()
-                    cd.categorize_item(base_df, user_shop_name, catlist, dict_cat_shop)
-                
+                    #user_shop_name = input('What transaction name would you like to categorize? ').upper()
+                    #cd.categorize_item(base_df, user_shop_name, cd.catlist, cd.dict_cat_shop)
+                    cd.categorize_item(base_df, cd.catlist, cd.dict_cat_shop)
                 elif input2 == "3":
-                    print(catlist)
-                    user_cat = int(input('Which category would you like to rename? (input number) '))
-                    user_newcat = input('What do you want to rename it as? ')
-                    cd.update_category(base_df, user_cat, user_newcat, catlist, dict_cat_shop)
+                    print(cd.catlist)
+                    try:
+                        user_cat = int(input('Which category would you like to rename? (input number) '))
+                        user_newcat = input('What do you want to rename it as? ')
+                        cd.update_category(base_df, user_cat, user_newcat, cd.catlist, cd.dict_cat_shop)
+                    except ValueError:
+                        print("Please input a valid number")
 
                 elif input2 == "4":
-                    new_cat = input('Name of new category: ')
-                    cd.add_category(new_cat, catlist)
-                
-                elif input2 == "5":
+                    print(cd.catlist)
+                    try:
+                        new_cat = input('Name of new category: ')
+                        cd.add_category(new_cat, cd.catlist)
+                    except Exception as e:
+                        print(e)
+
+                elif input1 == "5":
+                    print(base_df)
+
+                elif input2 == "0":
                     break
+
                 else:
-                    print("Input a valid choice (1-5)")
-
-        # if user_input == "1":
-        #     statement = pd.read_csv("statement.csv")
-        #     statement['date'] = pd.to_datetime(statement['date'])
-        #     p = s(statement)
-        #     print(p)
-
-        # elif user_input == "2":
-        #     print("nothing")
+                    print("Input a valid choice (0-5)")
                     
         elif user_input == "3":
             p = s(base_df)
@@ -154,12 +159,12 @@ def main():
                     year = input("Enter year (yyyy): ")
                     print(p.search_year(year))
                 elif user_input_s == "5":
-                    print(catlist)
-                    cname = catlist.get(int(input("Enter a category: ")))
+                    print(cd.catlist)
+                    cname = cd.catlist.get(int(input("Enter a category: ")))
                     print(p.search_category(cname))
                 elif user_input_s == "6":
-                    print(catlist)
-                    cname = catlist.get(int(input("Enter a category: ")))
+                    print(cd.catlist)
+                    cname = cd.catlist.get(int(input("Enter a category: ")))
                     start_date = input("Enter start date (dd/mm/yyyy): ")
                     end_date = input("Enter end date (dd/mm/yyyy): ")
                     print(p.search_category_range(cname, start_date, end_date))

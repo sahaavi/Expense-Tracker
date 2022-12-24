@@ -53,7 +53,8 @@ def add_expenses(user_date, user_shopname, user_amount, user_category,  df = Non
         date_format = "%d/%m/%Y"
         user_date = datetime.strptime(user_date, date_format)
         user_shopname = user_shopname.upper()
-        user_amount = user_amount
+        user_amount = float(user_amount)
+        user_category = cd.catlist.get(int(user_category))
         #print(f'Confirm input (y/n): Date: {user_date}, Transaction name: {user_shopname}, Amount: {user_amount}, Category: {user_category}')
         newrow = [user_date, user_shopname, user_amount, user_category]
         #confirm = input("Confirm input (y/n): ")

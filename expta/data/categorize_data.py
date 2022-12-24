@@ -16,13 +16,13 @@ def categorize_all(df, catlist = catlist, dict_cat_shop = dict_cat_shop):
                 df.loc[index, 'category'] = catlist.get(i)
                 dict_cat_shop[df.loc[index, 'shop_name']] = catlist.get(i)
 
-def categorize_item(df, user_shop_name, catlist = catlist, dict_cat_shop = dict_cat_shop):
+def categorize_item(df, catlist = catlist, dict_cat_shop = dict_cat_shop):
     try:
         name_or_row = input('Would you like to categorize a specific transaction name or a specific row (t/r): ')
         if name_or_row == 't':
             # update the category in the dataframe
             # update dict_cat_shop shop_name : new category
-            #user_shop_name = input('What transaction name would you like to categorize? ').upper()
+            user_shop_name = input('What transaction name would you like to categorize? ').upper()
             if df['shop_name'].str.contains(user_shop_name).any():
                 print('We have a match')
                 df_contains = df[df['shop_name'].str.contains(user_shop_name)]
@@ -92,7 +92,7 @@ def update_category(df, user_cat, user_newcat, catlist = catlist, dict_cat_shop 
         print(e)
 
 def add_category(new_cat, catlist = catlist):
-    print(catlist)
+    #print(catlist)
     #new_cat = input('Name of new category: ')
     if not isinstance(new_cat, str):
         print("error: input a string name")
