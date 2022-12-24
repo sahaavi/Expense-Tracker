@@ -45,7 +45,7 @@ class Search(object):
             print("Please enter a number between 1-12")
         else:
             # filter by date range
-            matched_month = self.statement[self.statement['date'].dt.strftime("%m") == month]
+            matched_month = self.statement[self.statement['date'].dt.strftime("%m") == str(month)]
             # check if any transaction occured during that period
             return self.check_empty(matched_month)
 

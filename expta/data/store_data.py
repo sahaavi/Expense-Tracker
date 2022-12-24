@@ -50,7 +50,7 @@ def add_expenses(user_date, user_shopname, user_amount, user_category,  df = Non
     if df is None:
         df = pd.DataFrame(columns=colnames)
     try:
-        date_format = "%m/%d/%Y"
+        date_format = "%d/%m/%Y"
         user_date = datetime.strptime(user_date, date_format)
         user_shopname = user_shopname.upper()
         user_amount = float(user_amount)
