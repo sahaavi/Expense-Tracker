@@ -73,13 +73,13 @@ def add_expenses(user_date, user_shopname, user_amount, user_category,  df = Non
         
 
 
-"""def show_expenses(self, start = 0, end = None):
-    if end == None:
-        end = len(self.maindf)
-    if len(self.maindf) != 0:
-        return self.maindf.loc[start:end]
-    #else:
-        #print("No data yet")"""
+# def show_expenses(self, start = 0, end = None):
+#     if end == None:
+#         end = len(self.maindf)
+#     if len(self.maindf) != 0:
+#         return self.maindf.loc[start:end]
+#     #else:
+#         #print("No data yet")
 
 def export_expenses(df, newfilename):
     #filename = input("Name the exported file: ")

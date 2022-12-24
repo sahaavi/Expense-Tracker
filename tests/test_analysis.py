@@ -1,10 +1,11 @@
-import unittest
-import pandas as pd
-# module to check pandas dataframe
-from pandas.testing import assert_frame_equal
+import sys
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
 
-import data.store_data as sd
-from analysis.analysis import Analysis as a
+import unittest
+
+from expta.data import store_data as sd
+from expta.analysis.analysis import Analysis as a
 
 class TestAnalysis(unittest.TestCase):
     
@@ -14,6 +15,7 @@ class TestAnalysis(unittest.TestCase):
         filename = "statement.csv"
         # adding the file
         cls.df = sd.add_csv(filename)
+        print(cls.df)
 
     # setting up for test
     def setUp(self):

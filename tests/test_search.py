@@ -1,10 +1,14 @@
+import sys
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
+
 import unittest
 import pandas as pd
 # module to check pandas dataframe
 from pandas.testing import assert_frame_equal
 
-import data.store_data as sd
-from analysis.search import Search as s
+import expta.data.store_data as sd
+from expta.analysis.search import Search as s
 
 class TestSearch(unittest.TestCase):
     
@@ -33,7 +37,7 @@ class TestSearch(unittest.TestCase):
 
     # test casae
     def test_search_date(self): 
-        actual = self.p.search_date("11/02/2022")
+        actual = self.p.search_date("02/11/2022")
         # reset the index of dataframe
         actual = actual.reset_index(drop=True)
         assert_frame_equal(actual, self.cdf, check_dtype=False)

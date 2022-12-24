@@ -1,5 +1,10 @@
 from datetime import datetime as dtime
 
+class MonthError(Exception):
+
+    def __int__(self):
+        print("Error")
+
 class Search(object):
 
     def __init__(self, df):
@@ -13,8 +18,14 @@ class Search(object):
             return df 
     
     def search_date(self, date):
-        matched_date = self.statement.loc[self.statement['date'] == date]
-        return self.check_empty(matched_date)       
+        try:
+            matched_date = self.statement.loc[self.statement['date'] == dtime.strptime(date, "%d/%m/%Y")]
+        except ValueError:
+            print("Input the date in correct format")
+        except Exception as Ex:
+            print(Ex)
+        else:
+            return self.check_empty(matched_date)
 
     def search_range(self, start_date, end_date):
         if(dtime.strptime(start_date, "%d/%m/%Y") <= dtime.strptime(end_date, "%d/%m/%Y")):
@@ -27,10 +38,17 @@ class Search(object):
             return None
 
     def search_month(self, month):
-        # filter by date range
-        matched_month = self.statement[self.statement['date'].dt.strftime("%m") == month]
-        # check if any transaction occured during that period
-        return self.check_empty(matched_month)
+        try:
+            if month > 12 or month < 1:
+                raise MonthError
+        except MonthError:
+            print("Please enter a number between 1-12")
+        else:
+            # filter by date range
+            matched_month = self.statement[self.statement['date'].dt.strftime("%m") == month]
+            # check if any transaction occured during that period
+            return self.check_empty(matched_month)
+
 
     def search_year(self, year):
         # filter by date range
@@ -64,6 +82,7 @@ class Search(object):
         if(filtered_statement is None):
             return None
         else:
+            
             matched_amt = filtered_statement.loc[filtered_statement['amount'] == amount]
             return self.check_empty(matched_amt)
 

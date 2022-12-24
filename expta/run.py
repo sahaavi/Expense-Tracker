@@ -1,10 +1,12 @@
+import sys
+
 import data.store_data as sd
 import data.categorize_data as cd
 from analysis.search import Search as s
 from analysis.analysis import Analysis as a
 
 def main():
-    base_df = sd.Expenses()
+    ## base_df = sd.Expenses()
     catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
     dict_cat_shop = {}
     n = 1
@@ -15,14 +17,14 @@ def main():
         input0 = input("Choose option: ")
         if input0 == "1":
             filename = input("Enter csv file name to add: ")
-            base_df.add_csv(filename)
+            base_df = sd.add_csv(filename)
         elif input0 == "2":
             user_date = input("Enter the date (MM/DD/YYYY): ")
             user_shopname = input("Enter the transaction name: ").upper()
             user_amount = float(input("Enter the amount: "))
             print(catlist)
             user_category = catlist.get(int(input("Enter a category: ")))
-            base_df.add_expenses(catlist, user_date, user_shopname, user_amount, user_category)
+            base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, catlist)
         else:
             print("Input a valid choice (1-2)")
         n += 1
@@ -34,7 +36,6 @@ def main():
         print("4. Analysis")
         print("Type exit to exit")
 
-        df = base_df.show_expenses() #initialize dataframe
         
         user_input = input("Choose an option: ")
 
@@ -51,7 +52,7 @@ def main():
 
                 if input1 == "1":
                     filename = input("Enter csv file name to add: ")
-                    base_df.add_csv(filename)
+                    sd.add_csv(filename, base_df)
 
                 elif input1 == "2":
                     user_date = input("Enter the date (MM/DD/YYYY): ")
@@ -59,19 +60,19 @@ def main():
                     user_amount = float(input("Enter the amount: "))
                     print(catlist)
                     user_category = catlist.get(int(input("Enter a category: ")))
-                    base_df.add_expenses(catlist, user_date, user_shopname, user_amount, user_category)
+                    base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, catlist)
 
                 elif input1 == "3":
-                    print(base_df.show_expenses())
+                    print(base_df)
 
                 elif input1 == "4":
-                    print(base_df.show_expenses())
+                    print(base_df)
                     whichrow = int(input("Which row number you would like to delete: "))
-                    base_df.delete_expenses(whichrow)
+                    base_df = sd.delete_expenses(base_df, whichrow)
                 
                 elif input1 == "5":
                     newfilename = input("Name the exported file: ")
-                    base_df.export_expenses(newfilename)
+                    sd.export_expenses(base_df, newfilename)
                 
                 elif input1 == "6":
                     break
@@ -90,16 +91,21 @@ def main():
                 print("5: exit")
                 input2 = input("Choose an option: ")
                 if input2 == "1":
-                    cd.categorize_all(df, catlist, dict_cat_shop)
+                    cd.categorize_all(base_df, catlist, dict_cat_shop)
                 
                 elif input2 == "2":
-                    cd.categorize_item(df, catlist, dict_cat_shop)
+                    user_shop_name = input('What transaction name would you like to categorize? ').upper()
+                    cd.categorize_item(base_df, user_shop_name, catlist, dict_cat_shop)
                 
                 elif input2 == "3":
-                    cd.update_category(df, catlist, dict_cat_shop)
+                    print(catlist)
+                    user_cat = int(input('Which category would you like to rename? (input number) '))
+                    user_newcat = input('What do you want to rename it as? ')
+                    cd.update_category(base_df, user_cat, user_newcat, catlist, dict_cat_shop)
 
                 elif input2 == "4":
-                    cd.add_category(catlist)
+                    new_cat = input('Name of new category: ')
+                    cd.add_category(new_cat, catlist)
                 
                 elif input2 == "5":
                     break
@@ -116,7 +122,7 @@ def main():
         #     print("nothing")
                     
         elif user_input == "3":
-            p = s(df)
+            p = s(base_df)
             while True:
                 print("1. Search a specific day's transactions")
                 print("2. Search transactions from a range of days")
@@ -136,8 +142,14 @@ def main():
                     end_date = input("Enter end date (dd/mm/yyyy): ")
                     print(p.search_range(start_date, end_date))
                 elif user_input_s == "3":
-                    month = input("Enter month's number (8 -> Aug): ")
-                    print(p.search_month(month))
+                    try:
+                        month = int(input("Enter month's number (8 -> Aug): "))
+                    except ValueError:
+                        print("Please use valid number")
+                    except:
+                        print(sys.exc_info()[0],"occured.")
+                    else:
+                        print(p.search_month(month))
                 elif user_input_s == "4":
                     year = input("Enter year (yyyy): ")
                     print(p.search_year(year))
@@ -158,7 +170,7 @@ def main():
                     amount = float(input("Enter the amount: "))
                     start_date = input("Enter start date (dd/mm/yyyy): ")
                     end_date = input("Enter end date (dd/mm/yyyy): ")
-                    print(p.search_category_range(amount, start_date, end_date))
+                    print(p.search_amount_range(amount, start_date, end_date))
                 elif user_input_s == "0":
                     break
                 else:
@@ -167,7 +179,7 @@ def main():
         elif user_input == "4":
             start_date = input("Enter start date (dd/mm/yyyy): ")
             end_date = input("Enter end date (dd/mm/yyyy): ")
-            j = a(df, start_date, end_date)
+            j = a(base_df, start_date, end_date)
             while True:
                 print("1. Income Expense Ratio from a range of days")
                 print("2. Category Percentage")
