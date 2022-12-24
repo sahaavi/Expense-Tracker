@@ -21,9 +21,9 @@
 [![Build Status](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis.svg?branch=main)](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis)
 
 
-- Package pypi link: [expta]
+- Package pypi link: [tdexpta]
 
-[expta]: https://pypi.org/project/expta/0.1/
+[tdexpta]: https://pypi.org/project/tdexpta/
 
 # Package: ExpenseTrackerAndAnalysis 
 

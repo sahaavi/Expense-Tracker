@@ -1,7 +1,7 @@
-from data import store_data as sd
-from data import categorize_data as cd
-from analysis.search import Search as s
-from analysis.analysis import Analysis as a
+from tdexpta.data import store_data as sd
+from tdexpta.data import categorize_data as cd
+from tdexpta.analysis.search import Search as s
+from tdexpta.analysis.analysis import Analysis as a
 
 def main():
     #catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}

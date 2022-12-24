@@ -1,4 +1,5 @@
-from analysis.search import Search
+
+from tdexpta.analysis.search import Search
 
 class Analysis(Search):
 
