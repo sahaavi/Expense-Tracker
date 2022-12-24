@@ -55,7 +55,7 @@ def main():
                     sd.add_csv(filename, base_df)
 
                 elif input1 == "2":
-                    user_date = input("Enter the date (MM/DD/YYYY): ")
+                    user_date = input("Enter the date (DD/MM/YYYY): ")
                     user_shopname = input("Enter the transaction name: ").upper()
                     user_amount = float(input("Enter the amount: "))
                     print(catlist)

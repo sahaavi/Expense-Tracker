@@ -18,6 +18,8 @@
 [license-shield]: https://img.shields.io/github/license/sahaavi/Expense-Tracker-and-Analysis.svg?style=flat-square
 [license-url]: https://github.com/sahaavi/Expense-Tracker-and-Analysis/blob/master/LICENSE
 
+[![Build Status](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis.svg?branch=main)](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis)
+
 
 # Package: ExpenseTrackerAndAnalysis 
 
