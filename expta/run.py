@@ -90,6 +90,7 @@ def main():
                 print("2: categorize specific expense")
                 print("3: update a category name")
                 print("4: add a category")
+                print("5: show expenses")
                 print("0: back")
                 input2 = input("Choose an option: ")
                 if input2 == "1":
@@ -115,12 +116,15 @@ def main():
                         cd.add_category(new_cat, cd.catlist)
                     except Exception as e:
                         print(e)
-                
+
+                elif input1 == "5":
+                    print(base_df)
+
                 elif input2 == "0":
                     break
 
                 else:
-                    print("Input a valid choice (0-4)")
+                    print("Input a valid choice (0-5)")
                     
         elif user_input == "3":
             p = s(base_df)
