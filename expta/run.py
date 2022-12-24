@@ -57,7 +57,7 @@ def main():
                     user_shopname = input("Enter the transaction name: ").upper()
                     user_amount = float(input("Enter the amount: "))
                     print(cd.catlist)
-                    user_category = cd.catlist.get(int(input("Enter a category: ")))
+                    user_category = input("Enter a category: ")
                     base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, cd.catlist)
 
                 elif input1 == "3":
