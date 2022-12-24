@@ -17,7 +17,8 @@ def main():
         if input0 == "1":
             filename = input("Enter csv file name to add: ")
             base_df = sd.add_csv(filename)
-            n += 1
+            if 'base_df' in locals():
+                n += 1
         elif input0 == "2":
             user_date = input("Enter the date (MM/DD/YYYY): ")
             user_shopname = input("Enter the transaction name: ").upper()
@@ -25,7 +26,8 @@ def main():
             print(cd.catlist)
             user_category = cd.catlist.get(int(input("Enter a category: ")))
             base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, cd.catlist)
-            n += 1
+            if 'base_df' in locals():
+                n += 1
         else:
             print("Input a valid choice (1-2)")
         
