@@ -1,13 +1,16 @@
 import sys
 sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
+sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/')
+sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/expta')
 
 import unittest
 import pandas as pd
 # module to check pandas dataframe
 from pandas.testing import assert_frame_equal
 
-import app.src.data.store_data as sd
-from app.src.analysis.search import Search as s
+import expta.data.store_data as sd
+from expta.analysis.search import Search as s
 
 class TestSearch(unittest.TestCase):
     

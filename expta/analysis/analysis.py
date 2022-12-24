@@ -1,4 +1,4 @@
-from app.src.analysis.search import Search
+from analysis.search import Search
 
 class Analysis(Search):
 

@@ -8,4 +8,4 @@ install:
   
 # command to run tests
 script:
-  - python app/tests/test_suite.py
+  - python tests/test_suite.py

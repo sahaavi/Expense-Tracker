@@ -1,10 +1,9 @@
 import sys
-sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
 
-import src.data.store_data as sd
-import src.data.categorize_data as cd
-from src.analysis.search import Search as s
-from src.analysis.analysis import Analysis as a
+import data.store_data as sd
+import data.categorize_data as cd
+from analysis.search import Search as s
+from analysis.analysis import Analysis as a
 
 def main():
     ## base_df = sd.Expenses()

@@ -1,8 +1,11 @@
 import sys
 sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
+sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
+sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/')
+sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/expta')
 
 import unittest
-import app.src.data.store_data as sd
+import expta.data.store_data as sd
 
 class TestStoreData(unittest.TestCase):
     
