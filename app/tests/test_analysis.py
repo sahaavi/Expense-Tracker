@@ -1,11 +1,10 @@
 import sys
 sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
-sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
 
 import unittest
 
-from expta.data import store_data as sd
-from expta.analysis.analysis import Analysis as a
+from app.src.data import store_data as sd
+from app.src.analysis.analysis import Analysis as a
 
 class TestAnalysis(unittest.TestCase):
     

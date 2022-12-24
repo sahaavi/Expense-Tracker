@@ -1,10 +1,9 @@
 import sys
 sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis")
-sys.path.append("e:\\Study\\UBC\\Block 3\\DATA 533 Collaborative Software Development\\Project\\Expense-Tracker-and-Analysis\\expta")
 
 import unittest
-import expta.data.store_data as sd
-import expta.data.categorize_data as cd
+import app.src.data.store_data as sd
+import app.src.data.categorize_data as cd
 
 class TestCategorize(unittest.TestCase):
     

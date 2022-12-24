@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime
-import data.categorize_data as cd
+import app.src.data.categorize_data as cd
 from numpy import nan 
 
 catlist = cd.catlist
