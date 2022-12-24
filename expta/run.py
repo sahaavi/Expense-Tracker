@@ -6,7 +6,6 @@ from analysis.search import Search as s
 from analysis.analysis import Analysis as a
 
 def main():
-    ## base_df = sd.Expenses()
     #catlist = {1:"groceries", 2:"dining out", 3:"household", 4:"clothing", 5:"misc"}
     #dict_cat_shop = {}
     n = 1
@@ -46,7 +45,7 @@ def main():
                 print("3: show expenses")
                 print("4: delete expense")
                 print("5: export expenses to csv")
-                print("6: exit")
+                print("0: exit")
                 input1 = input("Choose an option: ")
 
                 if input1 == "1":
@@ -87,7 +86,7 @@ def main():
                 print("2: categorize specific expense")
                 print("3: update a category name")
                 print("4: add a category")
-                print("5: exit")
+                print("0: exit")
                 input2 = input("Choose an option: ")
                 if input2 == "1":
                     cd.categorize_all(base_df, cd.catlist, cd.dict_cat_shop)
@@ -110,15 +109,6 @@ def main():
                     break
                 else:
                     print("Input a valid choice (0-4)")
-
-        # if user_input == "1":
-        #     statement = pd.read_csv("statement.csv")
-        #     statement['date'] = pd.to_datetime(statement['date'])
-        #     p = s(statement)
-        #     print(p)
-
-        # elif user_input == "2":
-        #     print("nothing")
                     
         elif user_input == "3":
             p = s(base_df)
@@ -153,12 +143,12 @@ def main():
                     year = input("Enter year (yyyy): ")
                     print(p.search_year(year))
                 elif user_input_s == "5":
-                    print(catlist)
-                    cname = catlist.get(int(input("Enter a category: ")))
+                    print(cd.catlist)
+                    cname = cd.catlist.get(int(input("Enter a category: ")))
                     print(p.search_category(cname))
                 elif user_input_s == "6":
-                    print(catlist)
-                    cname = catlist.get(int(input("Enter a category: ")))
+                    print(cd.catlist)
+                    cname = cd.catlist.get(int(input("Enter a category: ")))
                     start_date = input("Enter start date (dd/mm/yyyy): ")
                     end_date = input("Enter end date (dd/mm/yyyy): ")
                     print(p.search_category_range(cname, start_date, end_date))
