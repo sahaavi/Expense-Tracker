@@ -9,8 +9,8 @@ import pandas as pd
 # module to check pandas dataframe
 from pandas.testing import assert_frame_equal
 
-import expta.data.store_data as sd
-from expta.analysis.search import Search as s
+import tdexpta.data.store_data as sd
+from tdexpta.analysis.search import Search as s
 
 class TestSearch(unittest.TestCase):
     

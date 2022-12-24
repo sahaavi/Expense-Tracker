@@ -6,8 +6,8 @@ sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/expta')
 
 import unittest
 
-from expta.data import store_data as sd
-from expta.analysis.analysis import Analysis as a
+from tdexpta.data import store_data as sd
+from tdexpta.analysis.analysis import Analysis as a
 
 class TestAnalysis(unittest.TestCase):
     

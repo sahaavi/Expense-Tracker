@@ -5,8 +5,8 @@ sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/')
 sys.path.append('/home/travis/build/sahaavi/Expense-Tracker-and-Analysis/expta')
 
 import unittest
-import expta.data.store_data as sd
-import expta.data.categorize_data as cd
+import tdexpta.data.store_data as sd
+import tdexpta.data.categorize_data as cd
 
 class TestCategorize(unittest.TestCase):
     
