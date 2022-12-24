@@ -17,6 +17,7 @@ def main():
         if input0 == "1":
             filename = input("Enter csv file name to add: ")
             base_df = sd.add_csv(filename)
+            n += 1
         elif input0 == "2":
             user_date = input("Enter the date (MM/DD/YYYY): ")
             user_shopname = input("Enter the transaction name: ").upper()
@@ -24,9 +25,10 @@ def main():
             print(cd.catlist)
             user_category = cd.catlist.get(int(input("Enter a category: ")))
             base_df = sd.add_expenses(user_date, user_shopname, user_amount, user_category, base_df, cd.catlist)
+            n += 1
         else:
             print("Input a valid choice (1-2)")
-        n += 1
+        
 
     while True:
         print("1. Import/Export the data or add expenses.")
@@ -45,7 +47,7 @@ def main():
                 print("3: show expenses")
                 print("4: delete expense")
                 print("5: export expenses to csv")
-                print("0: exit")
+                print("0: back")
                 input1 = input("Choose an option: ")
 
                 if input1 == "1":
@@ -82,31 +84,39 @@ def main():
             
             input2 = None
             while input2 != "0":
-                print("1: categorize all uncagetorized expenses")
+                print("1: categorize all uncategorized expenses")
                 print("2: categorize specific expense")
                 print("3: update a category name")
                 print("4: add a category")
-                print("0: exit")
+                print("0: back")
                 input2 = input("Choose an option: ")
                 if input2 == "1":
                     cd.categorize_all(base_df, cd.catlist, cd.dict_cat_shop)
                 
                 elif input2 == "2":
-                    user_shop_name = input('What transaction name would you like to categorize? ').upper()
-                    cd.categorize_item(base_df, user_shop_name, cd.catlist, cd.dict_cat_shop)
-                
+                    #user_shop_name = input('What transaction name would you like to categorize? ').upper()
+                    #cd.categorize_item(base_df, user_shop_name, cd.catlist, cd.dict_cat_shop)
+                    cd.categorize_item(base_df, cd.catlist, cd.dict_cat_shop)
                 elif input2 == "3":
                     print(cd.catlist)
-                    user_cat = int(input('Which category would you like to rename? (input number) '))
-                    user_newcat = input('What do you want to rename it as? ')
-                    cd.update_category(base_df, user_cat, user_newcat, cd.catlist, cd.dict_cat_shop)
+                    try:
+                        user_cat = int(input('Which category would you like to rename? (input number) '))
+                        user_newcat = input('What do you want to rename it as? ')
+                        cd.update_category(base_df, user_cat, user_newcat, cd.catlist, cd.dict_cat_shop)
+                    except ValueError:
+                        print("Please input a valid number")
 
                 elif input2 == "4":
-                    new_cat = input('Name of new category: ')
-                    cd.add_category(new_cat, cd.catlist)
+                    print(cd.catlist)
+                    try:
+                        new_cat = input('Name of new category: ')
+                        cd.add_category(new_cat, cd.catlist)
+                    except Exception as e:
+                        print(e)
                 
                 elif input2 == "0":
                     break
+
                 else:
                     print("Input a valid choice (0-4)")
                     
