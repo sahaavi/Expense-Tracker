@@ -11,5 +11,5 @@
 [`categorize_data`]: https://github.com/sahaavi/Expense-Tracker-and-Analysis/blob/main/expta/data/categorize_data.py
 [`store_data`]: https://github.com/sahaavi/Expense-Tracker-and-Analysis/blob/main/expta/data/store_data.py
 [`README`]: https://github.com/sahaavi/Expense-Tracker-and-Analysis#readme
-[Click here]: https://
+[Click here]: https://youtu.be/yd25D19YSLc
 [tdexpta]: https://pypi.org/project/tdexpta/
