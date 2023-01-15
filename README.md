@@ -24,7 +24,8 @@
 
 [tdexpta]: https://pypi.org/project/tdexpta/
 
-- Video [Click here]
+- How to install and use Video [Click here]
+
 [Click here]: https://youtu.be/yd25D19YSLc
 
 - Code coverage report screenshot - 
