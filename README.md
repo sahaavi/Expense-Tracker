@@ -20,10 +20,15 @@
 
 [![Build Status](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis.svg?branch=main)](https://app.travis-ci.com/sahaavi/Expense-Tracker-and-Analysis)
 
-
 - Package pypi link: [tdexpta]
 
 [tdexpta]: https://pypi.org/project/tdexpta/
+
+- Video [Click here]
+[Click here]: https://youtu.be/yd25D19YSLc
+
+- Code coverage report screenshot - 
+![My Image](https://raw.githubusercontent.com/sahaavi/Expense-Tracker-and-Analysis/main/tests/coverage_report.jpg)
 
 # Package: ExpenseTrackerAndAnalysis 
 
